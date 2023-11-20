@@ -10,6 +10,8 @@ const theme = createTheme({
   },
 });
 
+const apiKey = import.meta.env.VITE_REACT_APP_NEWS_API_KEY;
+
 
 export class App extends Component {
 
@@ -31,7 +33,7 @@ export class App extends Component {
       <>
         <ThemeProvider theme={theme}>
           <Navbar handleBusinessClick = {this.handleBusinessClick}/>
-          <News pageSize={9} country="us" apiKey="de3a70d050c44caaabacf67e80d4ea3f" category={this.state.category}/>
+          <News pageSize={9} country="us" apiKey={apiKey} category={this.state.category}/>
         </ThemeProvider>
       </>
     )
