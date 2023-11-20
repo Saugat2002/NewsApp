@@ -1,12 +1,11 @@
 import { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import NewsImage from './NewsImage';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 export class NewsItem extends Component {
   static propTypes = {
@@ -23,35 +22,8 @@ export class NewsItem extends Component {
       <Card sx={{
         maxWidth: 345
       }}>
-        {
-          imageUrl ?
-            <CardMedia
-              component="img"
-              alt="News Image"
-              sx={{
-                height: 140,
-                objectFit: 'contain',
-              }}
-              image={imageUrl}
-            /> :
-            <CardMedia
-              sx={
-                {
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }
-              }
-            >
-              <ErrorOutlineIcon sx={{
-                height: 160,
-                width: 100,
-                objectFit: 'cover',
 
-              }} />
-            </CardMedia>
-
-        }
+        <NewsImage imageUrl={imageUrl} />
 
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">

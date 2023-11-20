@@ -48,6 +48,25 @@ export class News extends Component {
     })
   }
 
+  async componentDidUpdate(prevProps) {
+    if (prevProps.category !== this.props.category) {
+
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+      this.setState({ loading: true });
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      let filteredArticles = parsedData.articles.filter((element) => {
+        return (element.title !== "[Removed]" && element.title)
+      });
+      console.log(filteredArticles);
+      this.setState({
+        articles: filteredArticles,
+        totalResults: parsedData.totalResults,
+        loading: false,
+      })
+    }
+  }
+
   handlePrevClick = async () => {
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -86,7 +105,7 @@ export class News extends Component {
     return (
       <>
         <Box marginTop={12} marginBottom={3}>
-          <Typography marginLeft={5} variant="h4" fontWeight={600} color="initial">Latest News</Typography>
+          <Typography marginLeft={5} variant="h4" fontWeight={600} color="initial">Latest News - {this.props.category}</Typography>
           {this.state.loading && <Loading />}
           {!this.state.loading &&
             <Box sx={{ flexGrow: 1 }} marginY={3} >
@@ -101,7 +120,7 @@ export class News extends Component {
           }
           <Box marginX={5} display="flex" justifyContent="space-between" >
             <Button disabled={this.state.page <= 1} color="secondary" variant="contained" onClick={this.handlePrevClick}>&larr; Previous</Button>
-            <Button disabled={Math.ceil(this.state.totalResults / 18) < this.state.page + 1} color="secondary" variant="contained" onClick={this.handleNextClick}>Next &rarr;</Button>
+            <Button disabled={Math.ceil(this.state.totalResults / this.props.pageSize) < this.state.page + 1} color="secondary" variant="contained" onClick={this.handleNextClick}>Next &rarr;</Button>
           </Box>
         </Box>
       </>

@@ -1,5 +1,6 @@
 import { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,8 +22,8 @@ export class Navbar extends Component {
         }
     }
 
-    static propTypes = {
-        handleBusinessClick: PropTypes.func.isRequired,
+    capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     handleOpenNavMenu = (event) => {
@@ -90,13 +91,25 @@ export class Navbar extends Component {
                                 }}
                             >
                                 <MenuItem onClick={this.handleCloseNavMenu}>
-                                    <a href="/"><Typography textAlign="center">Home</Typography></a>
+                                    <Link to="/"><Typography textAlign="center">Home</Typography></Link>
                                 </MenuItem>
                                 <MenuItem onClick={this.handleCloseNavMenu}>
-                                    <a href="/about"><Typography textAlign="center">About</Typography></a>
+                                    <Link to="/business"><Typography textAlign="center">Business</Typography></Link>
                                 </MenuItem>
                                 <MenuItem onClick={this.handleCloseNavMenu}>
-                                    <a href="/contact"><Typography textAlign="center">COntact</Typography></a>
+                                    <Link to="/entertainment"><Typography textAlign="center">Entertainment</Typography></Link>
+                                </MenuItem>
+                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                    <Link to="/health"><Typography textAlign="center">Health</Typography></Link>
+                                </MenuItem>
+                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                    <Link to="/science"><Typography textAlign="center">Science</Typography></Link>
+                                </MenuItem>
+                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                    <Link to="/sports"><Typography textAlign="center">Sports</Typography></Link>
+                                </MenuItem>
+                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                    <Link to="/technology"><Typography textAlign="center">Technology</Typography></Link>
                                 </MenuItem>
                             </Menu>
                         </Box>
@@ -117,63 +130,63 @@ export class Navbar extends Component {
                         >
                             TazaKhabar
                         </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
-                            <a href="/">
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Link to="/">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Home
                                 </Button>
-                            </a>
-                            <a href="/business">
+                            </Link>
+                            <Link to="/business">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Business
                                 </Button>
-                            </a>
-                            <a href="/entertainment">
+                            </Link>
+                            <Link to="/entertainment">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Entertainment
                                 </Button>
-                            </a>
-                            <a href="/health">
+                            </Link>
+                            <Link to="/health">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Health
                                 </Button>
-                            </a>
-                            <a href="/science">
+                            </Link>
+                            <Link to="/science">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Science
                                 </Button>
-                            </a>
-                            <a href="/sports">
+                            </Link>
+                            <Link to="/sports">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Sports
                                 </Button>
-                            </a>
-                            <a href="/technology">
+                            </Link>
+                            <Link to="/technology">
                                 <Button
                                     onClick={this.handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Technology
                                 </Button>
-                            </a>
+                            </Link>
 
                         </Box>
                     </Toolbar>
