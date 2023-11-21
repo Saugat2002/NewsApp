@@ -29,7 +29,7 @@ export class NewsImage extends Component {
             alt="News Image"
             sx={{
               height: 140,
-              objectFit: 'contain',
+              objectFit: 'cover',
             }}
             image={this.props.imageUrl}
             onError={this.handleImageError}

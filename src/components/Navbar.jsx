@@ -22,9 +22,7 @@ export class Navbar extends Component {
         }
     }
 
-    capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+
 
     handleOpenNavMenu = (event) => {
         this.setState({
@@ -44,23 +42,25 @@ export class Navbar extends Component {
             <AppBar color="secondary" position="fixed">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <NewspaperIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="/"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontWeight: 600,
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            TazaKhabar
-                        </Typography>
+                        <Link to="/">
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <NewspaperIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'white' }} />
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    sx={{
+                                        mr: 2,
+                                        display: { xs: 'none', md: 'flex' },
+                                        fontWeight: 600,
+                                        color: 'white',
+                                        textDecoration: 'none',
+                                        fontSize: { "md": 22, "lg": 24 }
+                                    }}
+                                >
+                                    TazaKhabar
+                                </Typography>
+                            </div>
+                        </Link>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
@@ -126,6 +126,7 @@ export class Navbar extends Component {
                                 fontWeight: 600,
                                 color: 'inherit',
                                 textDecoration: 'none',
+                                fontSize: {"xs": 16, "sm": 20, }
                             }}
                         >
                             TazaKhabar
