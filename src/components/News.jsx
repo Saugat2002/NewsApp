@@ -94,7 +94,7 @@ export class News extends Component {
               <Grid display="flex" container rowSpacing={4} columnSpacing={{ xs: 2, sm: 3, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
                 {this.state.articles.map((element) => (
                   <Grid display="flex" justifyContent="center" alignItems="center" item xs={2} sm={4} md={4} key={element.url}>
-                    <Item><NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} /></Item>
+                    <Item><NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} /></Item>
                   </Grid>
                 ))}
               </Grid>
