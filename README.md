@@ -8,4 +8,4 @@ https://newsapi.org
 
 #### Note:
 While using API Key, put it inside a new file named ```.env.local``` in your root directory as shown below.
-```REACT_APP_NEWS_API_KEY="YOURAPIKEYHERE"```
+```REACT_APP_NEWS_API_KEY="YOUR_API_KEY_HERE"```
