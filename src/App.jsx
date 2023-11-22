@@ -1,10 +1,11 @@
 import { Component } from 'react'
-import Navbar from './components/Navbar'
 import News from './components/News'
+import Navbar from './components/Navbar'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
 import "./index.css";
+
 
 const theme = createTheme({
   typography: {
