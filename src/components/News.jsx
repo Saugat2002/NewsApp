@@ -2,7 +2,8 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import NewsItem from './NewsItem'
 import Loading from './Loading';
-import {Grid, Item, Box, Button , Typography} from '@mui/material';
+import { Grid, Box, Button, Typography } from '@mui/material';
+import Item from '@mui/material/Grid';
 
 export class News extends Component {
   constructor() {
@@ -46,7 +47,6 @@ export class News extends Component {
     this.setState({ loading: true });
     let data = await fetch(this.url);
     let parsedData = await data.json();
-    console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
