@@ -129,6 +129,7 @@ export class Navbar extends Component {
                                     }}
                                     open={Boolean(this.state.anchorElNav)}
                                     onClose={this.handleCloseNavMenu}
+                                    onClick={this.handleCloseNavMenu}
                                     sx={{
                                         display: { xs: 'block', md: 'none' },
                                     }}
