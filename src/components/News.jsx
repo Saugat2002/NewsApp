@@ -82,8 +82,7 @@ export class News extends Component {
     return (
       <>
         <Box marginTop={12} marginBottom={3}>
-
-          <Typography marginLeft={5} variant="h4" fontWeight={600} color="initial" textAlign={{ xs: "center", md: "left", lg: "left" }} sx={{ fontSize: { "xs": 16, "sm": 20, "md": 22, "lg": 24 } }}>Latest News - {this.capitalize(this.props.searchTerm ? this.props.searchTerm : this.props.category)}</Typography>
+          <Typography variant="h4" fontWeight={600} color="initial" textAlign="center" sx={{ fontSize: { "xs": 18, "sm": 20, "md": 22, "lg": 24 } }}>Latest News - {this.capitalize(this.props.searchTerm ? this.props.searchTerm : this.props.category)}</Typography>
 
           {this.state.loading ? <Loading /> :
             <Box sx={{ flexGrow: 1 }} marginY={3} >
@@ -103,7 +102,7 @@ export class News extends Component {
             <Button disabled={this.state.page <= 1} color="secondary" variant="contained" onClick={this.handlePrevClick} sx={{ fontSize: { "xs": 8, "sm": 10, "md": 12, "lg": 14 } }}>&larr; Previous</Button>
             <Button disabled={Math.ceil(this.state.totalResults / this.props.pageSize) < this.state.page + 1} color="secondary" variant="contained" onClick={this.handleNextClick} sx={{ fontSize: { "xs": 8, "sm": 10, "md": 12, "lg": 14 } }}>Next &rarr;</Button>
           </Box>
-        </Box>
+        </Box >
       </>
     )
   }
