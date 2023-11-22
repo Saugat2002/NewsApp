@@ -22,8 +22,7 @@ https://newsapi.org
 
 
 
-#### 4) Paste this in that file by replacing your API key: 
-```REACT_APP_NEWS_API_KEY="YOUR_API_KEY_HERE"```
+#### 4) Paste ```REACT_APP_NEWS_API_KEY="YOUR_API_KEY_HERE"``` in that file by replacing your API key: 
 
 
 
@@ -32,5 +31,5 @@ https://newsapi.org
 
 
 
-#### 6) Open the folder in your IDE and write this command in the terminal to open the app:
-```npm run dev```
+#### 6) Open the folder in your IDE and run ```npm run dev``` in the terminal to open the app:
+
