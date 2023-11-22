@@ -1,6 +1,5 @@
 import { Component } from 'react'
-import { Box } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Box, CircularProgress } from '@mui/material';
 
 
 export class Loading extends Component {

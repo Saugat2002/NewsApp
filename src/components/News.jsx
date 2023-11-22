@@ -2,11 +2,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import NewsItem from './NewsItem'
 import Loading from './Loading';
-import Grid from '@mui/material/Grid';
-import Item from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography'
+import {Grid, Item, Box, Button , Typography} from '@mui/material';
 
 export class News extends Component {
   constructor() {

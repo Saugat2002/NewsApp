@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import CardMedia from '@mui/material/CardMedia';
+import {CardMedia} from '@mui/material';
 
 export class NewsImage extends Component {
 

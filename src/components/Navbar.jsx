@@ -2,9 +2,9 @@ import { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, InputBase } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 
 
@@ -230,7 +230,7 @@ export class Navbar extends Component {
                         </Box>
                         <Search>
                             <SearchIconWrapper>
-                                <SearchIcon/>
+                                <SearchIcon />
                             </SearchIconWrapper>
                             <StyledInputBase
                                 onKeyDown={this.props.handleEnterPress}
