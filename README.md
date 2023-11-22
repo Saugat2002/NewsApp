@@ -32,5 +32,5 @@ https://newsapi.org
 
 
 
-####06) Open the folder in your IDE and write this command in the terminal to open the app:
+#### 6) Open the folder in your IDE and write this command in the terminal to open the app:
 ```npm run dev```
