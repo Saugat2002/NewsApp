@@ -13,7 +13,7 @@ This is a News App ( TaazaKhabar) made using React, MUI and NewsAPI
 
 
 
- 2) Get your API key by signing in this website:
+ 2) Get your API key by signing in this website
 https://newsapi.org
 
 
@@ -24,7 +24,7 @@ https://newsapi.org
 
 
 
- 4) Paste ```REACT_APP_NEWS_API_KEY="YOUR_API_KEY_HERE"``` in that file by replacing your API key: 
+ 4) Paste ```REACT_APP_NEWS_API_KEY="YOUR_API_KEY_HERE"``` in that file by replacing your API key
 
 
 
@@ -33,5 +33,5 @@ https://newsapi.org
 
 
 
- 6) Open the folder in your IDE and run ```npm run dev``` in the terminal to open the app:
+ 6) Open the folder in your IDE and run ```npm run dev``` in the terminal to load the app
 
