@@ -45,6 +45,7 @@ export class News extends Component {
 
 
   async updateNews(pageNo) {
+    document.title = `TazaKhabar - ${this.capitalize(this.props.searchTerm ? `Search Results - ${this.props.searchTerm}` : this.props.category)}`;
     this.props.setProgress(10);
     if (this.props.searchTerm === "") {
       this.url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=${this.props.pageSize}`;
@@ -63,7 +64,6 @@ export class News extends Component {
       page: pageNo,
     })
     this.props.setProgress(100);
-    document.title = `TazaKhabar - ${this.capitalize(this.props.searchTerm ? `Search Results - ${this.props.searchTerm}` : this.props.category)}`;
   }
 
   componentDidUpdate(prevProps) {
