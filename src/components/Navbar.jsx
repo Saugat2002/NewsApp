@@ -1,19 +1,57 @@
 import { Component } from 'react'
-// import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import PropTypes from 'prop-types'
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, InputBase } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import { styled, alpha } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '10ch',
+        [theme.breakpoints.up('lg')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
+    },
+}));
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: 'auto',
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
 
 export class Navbar extends Component {
+
+    static propTypes = {
+        handleEnterPress: PropTypes.func.isRequired,
+        resetSearchTerm: PropTypes.func.isRequired,
+    }
 
     constructor() {
         super();
@@ -90,25 +128,25 @@ export class Navbar extends Component {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/"><Typography textAlign="center">Home</Typography></Link>
                                 </MenuItem>
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/business"><Typography textAlign="center">Business</Typography></Link>
                                 </MenuItem>
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/entertainment"><Typography textAlign="center">Entertainment</Typography></Link>
                                 </MenuItem>
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/health"><Typography textAlign="center">Health</Typography></Link>
                                 </MenuItem>
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/science"><Typography textAlign="center">Science</Typography></Link>
                                 </MenuItem>
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/sports"><Typography textAlign="center">Sports</Typography></Link>
                                 </MenuItem>
-                                <MenuItem onClick={this.handleCloseNavMenu}>
+                                <MenuItem onClick={this.props.resetSearchTerm}>
                                     <Link to="/technology"><Typography textAlign="center">Technology</Typography></Link>
                                 </MenuItem>
                             </Menu>
@@ -126,7 +164,7 @@ export class Navbar extends Component {
                                 fontWeight: 600,
                                 color: 'inherit',
                                 textDecoration: 'none',
-                                fontSize: {"xs": 16, "sm": 20, }
+                                fontSize: { "xs": 16, "sm": 20, }
                             }}
                         >
                             TazaKhabar
@@ -134,7 +172,7 @@ export class Navbar extends Component {
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Link to="/">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Home
@@ -142,7 +180,7 @@ export class Navbar extends Component {
                             </Link>
                             <Link to="/business">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Business
@@ -150,7 +188,7 @@ export class Navbar extends Component {
                             </Link>
                             <Link to="/entertainment">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Entertainment
@@ -158,7 +196,7 @@ export class Navbar extends Component {
                             </Link>
                             <Link to="/health">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Health
@@ -166,7 +204,7 @@ export class Navbar extends Component {
                             </Link>
                             <Link to="/science">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Science
@@ -174,7 +212,7 @@ export class Navbar extends Component {
                             </Link>
                             <Link to="/sports">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Sports
@@ -182,7 +220,7 @@ export class Navbar extends Component {
                             </Link>
                             <Link to="/technology">
                                 <Button
-                                    onClick={this.handleCloseNavMenu}
+                                    onClick={this.props.resetSearchTerm}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     Technology
@@ -190,6 +228,16 @@ export class Navbar extends Component {
                             </Link>
 
                         </Box>
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon/>
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                onKeyDown={this.props.handleEnterPress}
+                                placeholder="Search…"
+                            />
+                        </Search>
+
                     </Toolbar>
                 </Container>
             </AppBar>

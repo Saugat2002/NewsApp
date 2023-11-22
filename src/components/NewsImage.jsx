@@ -1,11 +1,10 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import CardMedia from '@mui/material/CardMedia';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 export class NewsImage extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
       imageError: false,
@@ -17,40 +16,22 @@ export class NewsImage extends Component {
   }
 
   handleImageError = () => {
-    this.setState({imageError: true})
+    this.setState({ imageError: true })
   };
 
   render() {
     return (
       <>
-        {(this.props.imageUrl && !this.state.imageError) ?
-          <CardMedia
-            component="img"
-            alt="News Image"
-            sx={{
-              height: 140,
-              objectFit: 'cover',
-            }}
-            image={this.props.imageUrl}
-            onError={this.handleImageError}
-          /> :
-          <CardMedia
-            sx={
-              {
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }
-            }
-          >
-            <ErrorOutlineIcon sx={{
-              height: 160,
-              width: 100,
-              objectFit: 'cover',
-
-            }} />
-          </CardMedia>
-        }
+        <CardMedia
+          component="img"
+          alt="News Image"
+          sx={{
+            height: 140,
+            objectFit: 'cover',
+          }}
+          image={(this.props.imageUrl && !this.state.imageError) ? this.props.imageUrl : "/public/news.jpg"}
+          onError={this.handleImageError}
+        />
       </>
     )
   }

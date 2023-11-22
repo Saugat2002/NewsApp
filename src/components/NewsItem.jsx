@@ -34,8 +34,6 @@ export class NewsItem extends Component {
     let { title, description, imageUrl, newsUrl, author, date, source } = this.props;
     return (
       <>
-
-
         <Card sx={{
           maxWidth: 345
         }}>
@@ -57,7 +55,7 @@ export class NewsItem extends Component {
               </Link>
             </CardActions>
             <CardHeader
-              title={(author && author.length < 80) ? author.slice(0,30) : "Unknown"}
+              title={(author && author.length <= 30) ? author : "Unknown"}
               subheader={date ? this.readableDateFormat(date) : "Unknown"}
               titleTypographyProps={{ fontSize: { "xs": 11, "sm": 12, "md": 13, "lg": 14 } }}
               subheaderTypographyProps={{ fontSize: { "xs": 10, "sm": 11, "md": 12, "lg": 13 } }}
