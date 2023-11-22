@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, InputBase } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
+// import NewspaperIcon from '@mui/icons-material/Newspaper';
 import SearchIcon from '@mui/icons-material/Search';
 
 
@@ -82,7 +82,7 @@ export class Navbar extends Component {
                     <Toolbar disableGutters>
                         <Link to="/">
                             <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <NewspaperIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'white' }} />
+                                <Box component="img" src="/icon.png" alt="icon" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, width: 32 }} />
                                 <Typography
                                     variant="h6"
                                     noWrap
@@ -151,7 +151,7 @@ export class Navbar extends Component {
                                 </MenuItem>
                             </Menu>
                         </Box>
-                        <NewspaperIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                        <Box component="img" src="/icon.png" alt="icon" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, width: 32 }} />
                         <Typography
                             variant="h6"
                             noWrap

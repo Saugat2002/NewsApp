@@ -53,6 +53,7 @@ export class News extends Component {
       loading: false,
       page: pageNo,
     })
+    document.title = `TazaKhabar - ${this.capitalize(this.props.searchTerm ? `Search Results - ${this.props.searchTerm}` : this.props.category)}`;
   }
 
   componentDidUpdate(prevProps) {

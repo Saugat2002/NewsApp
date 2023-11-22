@@ -29,7 +29,7 @@ export class NewsImage extends Component {
             height: 140,
             objectFit: 'cover',
           }}
-          image={(this.props.imageUrl && !this.state.imageError) ? this.props.imageUrl : "/public/news.jpg"}
+          image={(this.props.imageUrl && !this.state.imageError) ? this.props.imageUrl : "/news.jpg"}
           onError={this.handleImageError}
         />
       </>
