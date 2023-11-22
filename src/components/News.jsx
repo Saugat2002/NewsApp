@@ -2,18 +2,25 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import NewsItem from './NewsItem'
 import Loading from './Loading';
-import { Grid, Box, Button, Typography } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import Item from '@mui/material/Grid';
+import InfiniteScroll from "react-infinite-scroll-component";
+
 
 export class News extends Component {
   constructor() {
     super();
     this.state = {
       articles: [],
-      loading: false,
+      loading: true,
+      totalResults: 0,
       page: 1,
+      progress: 0,
     }
   }
+
+  url = ""
+  endScroll = false
 
   static propTypes = {
     pageSize: PropTypes.number.isRequired,
@@ -21,6 +28,7 @@ export class News extends Component {
     apiKey: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     searchTerm: PropTypes.string,
+    setProgress: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -35,30 +43,36 @@ export class News extends Component {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  url = ""
 
   async updateNews(pageNo) {
+    this.props.setProgress(10);
     if (this.props.searchTerm === "") {
       this.url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=${this.props.pageSize}`;
     }
     else {
       this.url = `https://newsapi.org/v2/everything?q=${this.props.searchTerm}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=${this.props.pageSize}`;
     }
-    this.setState({ loading: true });
     let data = await fetch(this.url);
+    this.props.setProgress(30);
     let parsedData = await data.json();
+    this.props.setProgress(70);
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false,
       page: pageNo,
     })
+    this.props.setProgress(100);
     document.title = `TazaKhabar - ${this.capitalize(this.props.searchTerm ? `Search Results - ${this.props.searchTerm}` : this.props.category)}`;
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.searchTerm !== this.props.searchTerm) {
-      this.updateNews(this.state.page);
+      this.setState({
+        loading: true,
+      });
+      this.updateNews(1);
+      window.scrollTo(0, 0);
     }
   }
 
@@ -66,17 +80,24 @@ export class News extends Component {
     this.updateNews(this.state.page);
   }
 
-
-  handlePrevClick = async () => {
-    this.updateNews(this.state.page - 1);
-    window.scrollTo(0, 0);
+  fetchMoreData = async () => {
+    if (this.props.searchTerm === "") {
+      this.url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    }
+    else {
+      this.url = `https://newsapi.org/v2/everything?q=${this.props.searchTerm}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    }
+    let data = await fetch(this.url);
+    let parsedData = await data.json();
+    console.log(parsedData);
+    if (parsedData.articles.length < this.props.pageSize) {
+      this.endScroll = true;
+    }
+    this.setState({
+      page: this.state.page + 1,
+      articles: this.state.articles.concat(parsedData.articles),
+    })
   }
-
-  handleNextClick = async () => {
-    this.updateNews(this.state.page + 1);
-    window.scrollTo(0, 0);
-  }
-
 
   render() {
     return (
@@ -84,8 +105,15 @@ export class News extends Component {
         <Box marginTop={12} marginBottom={3}>
           <Typography variant="h4" fontWeight={600} color="initial" textAlign="center" sx={{ fontSize: { "xs": 18, "sm": 20, "md": 22, "lg": 24 } }}>Latest News - {this.capitalize(this.props.searchTerm ? this.props.searchTerm : this.props.category)}</Typography>
 
-          {this.state.loading ? <Loading /> :
-            <Box sx={{ flexGrow: 1 }} marginY={3} >
+          {this.state.loading && <Loading />}
+
+          <Box sx={{ flexGrow: 1 }} marginY={3} >
+            <InfiniteScroll
+              dataLength={this.state.articles.length}
+              next={this.fetchMoreData}
+              hasMore={!(this.endScroll)}
+              loader={<Loading />}
+            >
               <Grid display="flex" alignItems="flex-start" container rowSpacing={4} columnSpacing={{ xs: 2, sm: 3, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
                 {this.state.articles.map((element) => (
                   <Grid display="flex" justifyContent="center" alignItems="center" item xs={2} sm={4} md={4} key={element.url}>
@@ -95,12 +123,7 @@ export class News extends Component {
                   </Grid>
                 ))}
               </Grid>
-            </Box>
-          }
-
-          <Box marginX={5} display="flex" justifyContent="space-between" >
-            <Button disabled={this.state.page <= 1} color="secondary" variant="contained" onClick={this.handlePrevClick} sx={{ fontSize: { "xs": 8, "sm": 10, "md": 12, "lg": 14 } }}>&larr; Previous</Button>
-            <Button disabled={Math.ceil(this.state.totalResults / this.props.pageSize) < this.state.page + 1} color="secondary" variant="contained" onClick={this.handleNextClick} sx={{ fontSize: { "xs": 8, "sm": 10, "md": 12, "lg": 14 } }}>Next &rarr;</Button>
+            </InfiniteScroll>
           </Box>
         </Box >
       </>

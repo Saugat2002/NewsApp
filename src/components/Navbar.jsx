@@ -14,16 +14,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '6ch',
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('sm')]: {
             width: '12ch',
             '&:focus': {
                 width: '20ch',
             },
         },
-        [theme.breakpoints.only('sm')]: {
-            width: '12ch',
+        [theme.breakpoints.only('md')]: {
+            width: '6ch',
             '&:focus': {
-                width: '20ch',
+                width: '10ch',
+            },
+        },
+        [theme.breakpoints.only('xs')]: {
+            width: '6ch',
+            '&:focus': {
+                width: '10ch',
             },
         },
     },
@@ -91,7 +97,6 @@ export class Navbar extends Component {
                                     <Box component="img" src="/icon.png" alt="icon" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, width: 32 }} />
                                     <Typography
                                         variant="h6"
-                                        noWrap
                                         sx={{
                                             mr: 2,
                                             fontWeight: 600,
@@ -157,11 +162,10 @@ export class Navbar extends Component {
                                     </MenuItem>
                                 </Menu>
                             </Box>
-                            <Box noWrap sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1 }}>
+                            <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1 }}>
                                 <Box component="img" src="/icon.png" alt="icon" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, width: 32, }} />
                                 <Typography
                                     variant="h6"
-                                    noWrap
                                     component="a"
                                     href="#app-bar-with-responsive-menu"
                                     sx={{

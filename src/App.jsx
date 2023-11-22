@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import News from './components/News'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoadingBar from 'react-top-loading-bar';
 import "./index.css";
 
 const theme = createTheme({
@@ -22,7 +23,14 @@ export class App extends Component {
     super();
     this.state = {
       searchTerm: "",
+      progress: 0,
     }
+  }
+
+  setProgress = (progress) => {
+    this.setState({
+      progress: progress,
+    })
   }
 
   handleEnterPress = (event) => {
@@ -37,6 +45,7 @@ export class App extends Component {
     this.setState({
       searchTerm: "",
     });
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -44,15 +53,18 @@ export class App extends Component {
       <>
         <Router>
           <ThemeProvider theme={theme}>
-            <Navbar handleSearchChange={this.handleSearchChange} handleEnterPress={this.handleEnterPress} resetSearchTerm={this.resetSearchTerm}/>
+            <Navbar handleEnterPress={this.handleEnterPress} resetSearchTerm={this.resetSearchTerm} />
+            <LoadingBar progress={this.state.progress} onLoaderFinished={() => {
+              this  
+            }}/>
             <Routes>
-              <Route exact path="/" element={<News key="general" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="general" searchTerm={this.state.searchTerm} />} />
-              <Route exact path="/business" element={<News key="business" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="business" searchTerm={this.state.searchTerm} />} />
-              <Route exact path="/entertainment" element={<News key="entertainment" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="entertainment" searchTerm={this.state.searchTerm} />} />
-              <Route exact path="/health" element={<News key="health" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="health" searchTerm={this.state.searchTerm} />} />
-              <Route exact path="/science" element={<News key="science" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="science" />} searchTerm={this.state.searchTerm} />
-              <Route exact path="/sports" element={<News path="/sports" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="sports" />} searchTerm={this.state.searchTerm} />
-              <Route exact path="/technology" element={<News key="technology" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="technology" searchTerm={this.state.searchTerm} />} />
+              <Route exact path="/" element={<News setProgress={this.setProgress} key="general" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="general" searchTerm={this.state.searchTerm} />} />
+              <Route exact path="/business" element={<News setProgress={this.setProgress} key="business" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="business" searchTerm={this.state.searchTerm} />} />
+              <Route exact path="/entertainment" element={<News setProgress={this.setProgress} key="entertainment" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="entertainment" searchTerm={this.state.searchTerm} />} />
+              <Route exact path="/health" element={<News setProgress={this.setProgress} key="health" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="health" searchTerm={this.state.searchTerm} />} />
+              <Route exact path="/science" element={<News setProgress={this.setProgress} key="science" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="science" />} searchTerm={this.state.searchTerm} />
+              <Route exact path="/sports" element={<News setProgress={this.setProgress} path="/sports" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="sports" />} searchTerm={this.state.searchTerm} />
+              <Route exact path="/technology" element={<News setProgress={this.setProgress} key="technology" pageSize={this.pageSize} country={this.country} apiKey={apiKey} category="technology" searchTerm={this.state.searchTerm} />} />
             </Routes>
           </ThemeProvider>
         </Router>
