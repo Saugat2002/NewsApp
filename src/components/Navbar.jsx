@@ -61,7 +61,7 @@ export class Navbar extends Component {
 
     static propTypes = {
         handleEnterPress: PropTypes.func.isRequired,
-        resetSearchTerm: PropTypes.func.isRequired,
+        handleNavClick: PropTypes.func.isRequired,
     }
 
     constructor() {
@@ -139,25 +139,25 @@ export class Navbar extends Component {
                                         display: { xs: 'block', md: 'none' },
                                     }}
                                 >
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/"><Typography textAlign="center">Home</Typography></Link>
                                     </MenuItem>
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/business"><Typography textAlign="center">Business</Typography></Link>
                                     </MenuItem>
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/entertainment"><Typography textAlign="center">Entertainment</Typography></Link>
                                     </MenuItem>
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/health"><Typography textAlign="center">Health</Typography></Link>
                                     </MenuItem>
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/science"><Typography textAlign="center">Science</Typography></Link>
                                     </MenuItem>
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/sports"><Typography textAlign="center">Sports</Typography></Link>
                                     </MenuItem>
-                                    <MenuItem onClick={this.props.resetSearchTerm}>
+                                    <MenuItem onClick={this.props.handleNavClick}>
                                         <Link to="/technology"><Typography textAlign="center">Technology</Typography></Link>
                                     </MenuItem>
                                 </Menu>
@@ -184,7 +184,7 @@ export class Navbar extends Component {
                             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                                 <Link to="/">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Home
@@ -192,7 +192,7 @@ export class Navbar extends Component {
                                 </Link>
                                 <Link to="/business">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Business
@@ -200,7 +200,7 @@ export class Navbar extends Component {
                                 </Link>
                                 <Link to="/entertainment">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Entertainment
@@ -208,7 +208,7 @@ export class Navbar extends Component {
                                 </Link>
                                 <Link to="/health">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Health
@@ -216,7 +216,7 @@ export class Navbar extends Component {
                                 </Link>
                                 <Link to="/science">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Science
@@ -224,7 +224,7 @@ export class Navbar extends Component {
                                 </Link>
                                 <Link to="/sports">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Sports
@@ -232,7 +232,7 @@ export class Navbar extends Component {
                                 </Link>
                                 <Link to="/technology">
                                     <Button
-                                        onClick={this.props.resetSearchTerm}
+                                        onClick={this.props.handleNavClick}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         Technology

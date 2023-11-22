@@ -103,28 +103,32 @@ export class News extends Component {
     return (
       <>
         <Box marginTop={12} marginBottom={3}>
-          <Typography variant="h4" fontWeight={600} color="initial" textAlign="center" sx={{ fontSize: { "xs": 18, "sm": 20, "md": 22, "lg": 24 } }}>Latest News - {this.capitalize(this.props.searchTerm ? this.props.searchTerm : this.props.category)}</Typography>
+          < Typography variant="h4" fontWeight={600} color="initial" textAlign="center" sx={{ fontSize: { "xs": 18, "sm": 20, "md": 22, "lg": 24 } }}>Latest News - {this.capitalize(this.props.searchTerm ? this.props.searchTerm : this.props.category)}</Typography>
 
           {this.state.loading && <Loading />}
 
-          <Box sx={{ flexGrow: 1 }} marginY={3} >
-            <InfiniteScroll
-              dataLength={this.state.articles.length}
-              next={this.fetchMoreData}
-              hasMore={!(this.endScroll)}
-              loader={<Loading />}
-            >
-              <Grid display="flex" alignItems="flex-start" container rowSpacing={4} columnSpacing={{ xs: 2, sm: 3, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
-                {this.state.articles.map((element) => (
-                  <Grid display="flex" justifyContent="center" alignItems="center" item xs={2} sm={4} md={4} key={element.url}>
-                    <Item>
-                      <NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
-                    </Item>
-                  </Grid>
-                ))}
-              </Grid>
-            </InfiniteScroll>
-          </Box>
+          {(this.state.totalResults !== 0) ?
+            <Box sx={{ flexGrow: 1 }} marginY={3} >
+              <InfiniteScroll
+                dataLength={this.state.articles.length}
+                next={this.fetchMoreData}
+                hasMore={!(this.endScroll)}
+                loader={<Loading />}
+              >
+                <Grid display="flex" alignItems="flex-start" container rowSpacing={4} columnSpacing={{ xs: 2, sm: 3, md: 4 }} columns={{ xs: 2, sm: 8, md: 12 }}>
+                  {this.state.articles.map((element) => (
+                    <Grid display="flex" justifyContent="center" alignItems="center" item xs={2} sm={4} md={4} key={element.url}>
+                      <Item>
+                        <NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+
+                      </Item>
+                    </Grid>
+                  ))}
+                </Grid>
+              </InfiniteScroll>
+            </Box>
+            : <Typography variant="h6" fontWeight={300} color="initial" marginTop={20} textAlign="center" sx={{ fontSize: { "xs": 18, "sm": 20, "md": 22, "lg": 24 } }}>No News Found</Typography>
+          }
         </Box >
       </>
     )
